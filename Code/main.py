@@ -22,6 +22,7 @@ x=100
 #this helps the pygame to generate frames faster 
 player_surf = pygame.image.load(join('images', 'player.png')).convert_alpha()
 player_rect = player_surf.get_frect(center = (WINDOW_WIDTH/2, WINDOW_HEIGHT/2))
+player_direction = -1 
 
 
 star_surf = pygame.image.load(join('images', 'star.png')).convert_alpha()
@@ -29,7 +30,12 @@ star_position = [(randint(0, WINDOW_WIDTH), randint(0, WINDOW_HEIGHT)) for i in 
 
 
 laser_surf = pygame.image.load(join('images', 'laser.png')).convert_alpha()
-laser_rect = laser_surf.get_frect(bottomleft = (10, 10))
+laser_rect = laser_surf.get_frect(bottomleft = (20, WINDOW_HEIGHT - 20))
+
+
+meteor_surf = pygame.image.load(join('images', 'meteor.png')).convert_alpha()
+meteor_rect = meteor_surf.get_frect(center = (WINDOW_WIDTH/2, WINDOW_HEIGHT/2))
+
 
 while running:
     #event loop
@@ -46,14 +52,18 @@ while running:
     for pos in star_position:
         display_surface.blit(star_surf, pos)
 
-    #Making Bouncing Animations
-    #if player_rect.right < WINDOW_WIDTH:
-       # player_rect.left += 0.1
-   # elif player_rect.left == WINDOW_WIDTH:
-    #    player_rect.right -= 0.1
 
-    #display_surface.blit(player_surf, player_rect)
+    display_surface.blit(meteor_surf,meteor_rect)
+     
     display_surface.blit(laser_surf, laser_rect)
+
+    #Making Bouncing Animations
+    player_rect.left += player_direction*0.4
+    if player_rect.right > WINDOW_WIDTH or player_rect.left < 0:
+        player_direction *= -1
+        
+    display_surface.blit(player_surf, player_rect)
+    
     
     pygame.display.update()
     
