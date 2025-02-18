@@ -29,7 +29,7 @@ star_position = [(randint(0, WINDOW_WIDTH), randint(0, WINDOW_HEIGHT)) for i in 
 
 
 laser_surf = pygame.image.load(join('images', 'laser.png')).convert_alpha()
-laser_rect = laser_surf.get_frect(center = (10, 10))
+laser_rect = laser_surf.get_frect(bottomleft = (10, 10))
 
 while running:
     #event loop
