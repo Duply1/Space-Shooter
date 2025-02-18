@@ -29,7 +29,7 @@ star_position = [(randint(0, WINDOW_WIDTH), randint(0, WINDOW_HEIGHT)) for i in 
 
 
 laser_surf = pygame.image.load(join('images', 'laser.png')).convert_alpha()
-laser_rect = laser_surf.get_frect(bottomleft = (WINDOW_WIDTH, WINDOW_HEIGHT))
+laser_rect = laser_surf.get_frect(center = (10, 10))
 
 while running:
     #event loop
@@ -52,7 +52,7 @@ while running:
    # elif player_rect.left == WINDOW_WIDTH:
     #    player_rect.right -= 0.1
 
-    display_surface.blit(player_surf, player_rect)
+    #display_surface.blit(player_surf, player_rect)
     display_surface.blit(laser_surf, laser_rect)
     
     pygame.display.update()
